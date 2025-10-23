@@ -1,538 +1,167 @@
 import 'package:flutter/material.dart';
 
-class SoundAlarmPage extends StatelessWidget {
-  const SoundAlarmPage({super.key});
+class SoundAlarmPage extends StatefulWidget {
+  final String? selectedSound;
+
+  const SoundAlarmPage({super.key, this.selectedSound});
+
+  @override
+  State<SoundAlarmPage> createState() => _SoundAlarmPageState();
+}
+
+class _SoundAlarmPageState extends State<SoundAlarmPage> {
+  String? selectedSound;
+  final List<String> sounds = [
+    "Silent",
+    "Default alarm sound",
+    "Alarm",
+    "Beep",
+    "Bell",
+    "Brisk",
+    "Busy Marimba",
+    "Chord",
+    "Classical",
+    "Clock",
+    "Cuckoo Clock",
+    "Dreamer",
+    "Elegantly",
+    "Expectation",
+    "Firm",
+    "Guitar",
+    "Interesting",
+    "Jingle",
+    "Lesurely",
+    "Lithe",
+    "Modulator",
+    "Popular",
+    "Pulse Signal",
+    "Relax",
+    "Swing",
+    "Synth Arpeggio",
+    "Thad Wetland",
+  ];
+
+  @override
+  void initState() {
+    super.initState();
+    selectedSound = widget.selectedSound;
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Container(color: Colors.black),
-        ListView(
-          children: [
-            Container(
-              padding: EdgeInsets.symmetric(vertical: 25, horizontal: 20),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Image.asset(
-                    "assets/back_icon.png",
-                    width: 24,
-                    height: 24,
-                  ),
-                  Text(
-                    "Alarm sound",
-                    style: TextStyle(color: Colors.white, fontSize: 18, decoration: TextDecoration.none),
-                  ),
-                  Image.asset(
-                    "assets/check_icon.png",
-                    width: 24,
-                    height: 24,
-                  ),
-                ],
-              ),
-            ),
-            Container(
-              margin: EdgeInsets.only(top:20, left: 30),
+    return Scaffold(
+      backgroundColor: Colors.black,
+      body: Stack(
+        children: [
+          ListView(
+            children: [
+
+              Container(
+                padding: const EdgeInsets.symmetric(vertical: 25, horizontal: 20),
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
-                      "Your Sounds",
-                      style: TextStyle(color: Colors.grey, fontSize: 15, decoration: TextDecoration.none),
+                    GestureDetector(
+                      onTap: () => Navigator.pop(context), // kembali tanpa menyimpan
+                      child: Image.asset("assets/back_icon.png",
+                          width: 24, height: 24),
+                    ),
+                    const Text(
+                      "Alarm sound",
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 18,
+                          decoration: TextDecoration.none),
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.pop(context, selectedSound);
+                      },
+                      child: Image.asset("assets/check_icon.png",
+                          width: 24, height: 24),
                     ),
                   ],
                 ),
-            ),
-            Container(
-              padding: EdgeInsets.symmetric(vertical: 30, horizontal: 30),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "Add New",
-                    style: TextStyle(color: Colors.white, fontSize: 18, decoration: TextDecoration.none),
-                  ),
-                  Image.asset(
-                    "assets/add_icon.png",
-                    width: 24,
-                    height: 24,
-                  ),
-                ],
               ),
-            ),
-            Container(
-              margin: EdgeInsets.only(top:10, left: 30),
+
+              Container(
+                margin: const EdgeInsets.only(top: 20, left: 30),
+                child: const Text(
+                  "Your Sounds",
+                  style: TextStyle(
+                      color: Colors.grey,
+                      fontSize: 15,
+                      decoration: TextDecoration.none),
+                ),
+              ),
+              Container(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 30, horizontal: 30),
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
-                      "Device sounds",
-                      style: TextStyle(color: Colors.grey, fontSize: 15, decoration: TextDecoration.none),
+                    const Text(
+                      "Add New",
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 18,
+                          decoration: TextDecoration.none),
                     ),
+                    Image.asset("assets/add_icon.png",
+                        width: 24, height: 24),
                   ],
                 ),
-            ),
-            Container(
-              padding: EdgeInsets.only(bottom: 36, top: 30, left: 30, right: 30),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "Silent",
-                    style: TextStyle(color: Colors.white, fontSize: 18, decoration: TextDecoration.none),
-                  ),
-                  Image.asset(
-                    "assets/circle_icon.png",
-                    width: 24,
-                    height: 24,
-                  ),
-                ],
               ),
-            ),
-            Container(
-              padding: EdgeInsets.symmetric(horizontal:30),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "Default alarm sound",
-                    style: TextStyle(color: Colors.white, fontSize: 18, decoration: TextDecoration.none),
-                  ),
-                  Image.asset(
-                    "assets/circle_icon.png",
-                    width: 24,
-                    height: 24,
-                  ),
-                ],
+              Container(
+                margin: const EdgeInsets.only(top: 10, left: 30),
+                child: const Text(
+                  "Device sounds",
+                  style: TextStyle(
+                      color: Colors.grey,
+                      fontSize: 15,
+                      decoration: TextDecoration.none),
+                ),
               ),
-            ),
-            Container(
-              padding: EdgeInsets.symmetric(vertical: 36, horizontal: 30),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "Alarm",
-                    style: TextStyle(color: Colors.white, fontSize: 18, decoration: TextDecoration.none),
+
+              for (var sound in sounds)
+                GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      selectedSound = sound;
+                    });
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 20, horizontal: 30),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(sound,
+                            style: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 18,
+                                decoration: TextDecoration.none)),
+                        Container(
+                          width: 26,
+                          height: 26,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            border: Border.all(
+                              color: selectedSound == sound
+                                  ? Colors.blueAccent
+                                  : Colors.white70,
+                              width: selectedSound == sound ? 4 : 1.5,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-                  Image.asset(
-                    "assets/circle_icon.png",
-                    width: 24,
-                    height: 24,
-                  ),
-                ],
-              ),
-            ),
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: 30),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "Beep",
-                    style: TextStyle(color: Colors.white, fontSize: 18, decoration: TextDecoration.none),
-                  ),
-                  Image.asset(
-                    "assets/circle_icon.png",
-                    width: 24,
-                    height: 24,
-                  ),
-                ],
-              ),
-            ),
-            Container(
-              padding:EdgeInsets.symmetric(vertical: 36,horizontal: 30),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "Bell",
-                    style: TextStyle(color: Colors.white, fontSize: 18, decoration: TextDecoration.none),
-                  ),
-                  Image.asset(
-                    "assets/circle_icon.png",
-                    width: 24,
-                    height: 24,
-                  ),
-                ],
-              ),
-            ),
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: 30),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "Brisk",
-                    style: TextStyle(color: Colors.white, fontSize: 18, decoration: TextDecoration.none),
-                  ),
-                  Image.asset(
-                    "assets/circle_icon.png",
-                    width: 24,
-                    height: 24,
-                  ),
-                ],
-              ),
-            ),
-            Container(
-              padding: EdgeInsets.symmetric(vertical: 36, horizontal: 30),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "Busy Marimba",
-                    style: TextStyle(color: Colors.white, fontSize: 18, decoration: TextDecoration.none),
-                  ),
-                  Image.asset(
-                    "assets/circle_icon.png",
-                    width: 24,
-                    height: 24,
-                  ),
-                ],
-              ),
-            ),
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: 30),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "Chord",
-                    style: TextStyle(color: Colors.white, fontSize: 18, decoration: TextDecoration.none),
-                  ),
-                  Image.asset(
-                    "assets/circle_icon.png",
-                    width: 24,
-                    height: 24,
-                  ),
-                ],
-              ),
-            ),
-            Container(
-              padding: EdgeInsets.symmetric(vertical: 36, horizontal: 30),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "Classical",
-                    style: TextStyle(color: Colors.white, fontSize: 18, decoration: TextDecoration.none),
-                  ),
-                  Image.asset(
-                    "assets/circle_icon.png",
-                    width: 24,
-                    height: 24,
-                  ),
-                ],
-              ),
-            ),
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: 30),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "Clock",
-                    style: TextStyle(color: Colors.white, fontSize: 18, decoration: TextDecoration.none),
-                  ),
-                  Image.asset(
-                    "assets/circle_icon.png",
-                    width: 24,
-                    height: 24,
-                  ),
-                ],
-              ),
-            ),
-            Container(
-              padding: EdgeInsets.symmetric(vertical: 36, horizontal: 30),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "Cuckoo Clock",
-                    style: TextStyle(color: Colors.white, fontSize: 18, decoration: TextDecoration.none),
-                  ),
-                  Image.asset(
-                    "assets/circle_icon.png",
-                    width: 24,
-                    height: 24,
-                  ),
-                ],
-              ),
-            ),
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: 30),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "Dreamer",
-                    style: TextStyle(color: Colors.white, fontSize: 18, decoration: TextDecoration.none),
-                  ),
-                  Image.asset(
-                    "assets/circle_icon.png",
-                    width: 24,
-                    height: 24,
-                  ),
-                ],
-              ),
-            ),
-            Container(
-              padding: EdgeInsets.symmetric(vertical: 36, horizontal: 30),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "Elegantly",
-                    style: TextStyle(color: Colors.white, fontSize: 18, decoration: TextDecoration.none),
-                  ),
-                  Image.asset(
-                    "assets/circle_icon.png",
-                    width: 24,
-                    height: 24,
-                  ),
-                ],
-              ),
-            ),
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: 30),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "Expectation",
-                    style: TextStyle(color: Colors.white, fontSize: 18, decoration: TextDecoration.none),
-                  ),
-                  Image.asset(
-                    "assets/circle_icon.png",
-                    width: 24,
-                    height: 24,
-                  ),
-                ],
-              ),
-            ),
-            Container(
-              padding: EdgeInsets.symmetric(vertical: 36, horizontal: 30),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "Firm",
-                    style: TextStyle(color: Colors.white, fontSize: 18, decoration: TextDecoration.none),
-                  ),
-                  Image.asset(
-                    "assets/circle_icon.png",
-                    width: 24,
-                    height: 24,
-                  ),
-                ],
-              ),
-            ),
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: 30),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "Guitar",
-                    style: TextStyle(color: Colors.white, fontSize: 18, decoration: TextDecoration.none),
-                  ),
-                  Image.asset(
-                    "assets/circle_icon.png",
-                    width: 24,
-                    height: 24,
-                  ),
-                ],
-              ),
-            ),
-            Container(
-              padding: EdgeInsets.symmetric(vertical: 36, horizontal: 30),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "Interesting",
-                    style: TextStyle(color: Colors.white, fontSize: 18, decoration: TextDecoration.none),
-                  ),
-                  Image.asset(
-                    "assets/circle_icon.png",
-                    width: 24,
-                    height: 24,
-                  ),
-                ],
-              ),
-            ),
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: 30),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "Jingle",
-                    style: TextStyle(color: Colors.white, fontSize: 18, decoration: TextDecoration.none),
-                  ),
-                  Image.asset(
-                    "assets/circle_icon.png",
-                    width: 24,
-                    height: 24,
-                  ),
-                ],
-              ),
-            ),
-            Container(
-              padding: EdgeInsets.symmetric(vertical: 36, horizontal: 30),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "Lesurely",
-                    style: TextStyle(color: Colors.white, fontSize: 18, decoration: TextDecoration.none),
-                  ),
-                  Image.asset(
-                    "assets/circle_icon.png",
-                    width: 24,
-                    height: 24,
-                  ),
-                ],
-              ),
-            ),
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: 30),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "Lithe",
-                    style: TextStyle(color: Colors.white, fontSize: 18, decoration: TextDecoration.none),
-                  ),
-                  Image.asset(
-                    "assets/circle_icon.png",
-                    width: 24,
-                    height: 24,
-                  ),
-                ],
-              ),
-            ),
-            Container(
-              padding: EdgeInsets.symmetric(vertical: 36, horizontal: 30),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "Modulator",
-                    style: TextStyle(color: Colors.white, fontSize: 18, decoration: TextDecoration.none),
-                  ),
-                  Image.asset(
-                    "assets/circle_icon.png",
-                    width: 24,
-                    height: 24,
-                  ),
-                ],
-              ),
-            ),
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: 30),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "Popular",
-                    style: TextStyle(color: Colors.white, fontSize: 18, decoration: TextDecoration.none),
-                  ),
-                  Image.asset(
-                    "assets/circle_icon.png",
-                    width: 24,
-                    height: 24,
-                  ),
-                ],
-              ),
-            ),
-            Container(
-              padding: EdgeInsets.symmetric(vertical: 36, horizontal: 30),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "Pulse Signal",
-                    style: TextStyle(color: Colors.white, fontSize: 18, decoration: TextDecoration.none),
-                  ),
-                  Image.asset(
-                    "assets/circle_icon.png",
-                    width: 24,
-                    height: 24,
-                  ),
-                ],
-              ),
-            ),
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: 30),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "Relax",
-                    style: TextStyle(color: Colors.white, fontSize: 18, decoration: TextDecoration.none),
-                  ),
-                  Image.asset(
-                    "assets/circle_icon.png",
-                    width: 24,
-                    height: 24,
-                  ),
-                ],
-              ),
-            ),
-            Container(
-              padding: EdgeInsets.symmetric(vertical: 36, horizontal: 30),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "Swing",
-                    style: TextStyle(color: Colors.white, fontSize: 18, decoration: TextDecoration.none),
-                  ),
-                  Image.asset(
-                    "assets/circle_icon.png",
-                    width: 24,
-                    height: 24,
-                  ),
-                ],
-              ),
-            ),
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: 30),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "Synth Arpeggio",
-                    style: TextStyle(color: Colors.white, fontSize: 18, decoration: TextDecoration.none),
-                  ),
-                  Image.asset(
-                    "assets/circle_icon.png",
-                    width: 24,
-                    height: 24,
-                  ),
-                ],
-              ),
-            ),
-            Container(
-              padding: EdgeInsets.symmetric(vertical: 36, horizontal: 30),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "Thad Wetland",
-                    style: TextStyle(color: Colors.white, fontSize: 18, decoration: TextDecoration.none),
-                  ),
-                  Image.asset(
-                    "assets/circle_icon.png",
-                    width: 24,
-                    height: 24,
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ],
+                ),
+            ],
+          ),
+        ],
+      ),
     );
   }
 }

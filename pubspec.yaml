@@ -59,7 +59,8 @@ flutter:
     - assets/close_icon.png
     - assets/circle_icon.png
     - assets/back_icon.png
-
+    - assets/stopwatch_icon.png
+    - assets/alarm_icon.png
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
